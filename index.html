@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For You ❤️</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(to bottom, #ff5f8d, #ffc371);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+.box {
+    background: rgba(0,0,0,0.35);
+    padding: 25px;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    width: 90%;
+    max-width: 350px;
+}
+
+h1 {
+    margin-bottom: 10px;
+}
+
+#typeText {
+    min-height: 50px;
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+.buttons {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 25px;
+    font-size: 18px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+#yesBtn {
+    background: #00c853;
+    color: white;
+}
+
+#noBtn {
+    background: #ff1744;
+    color: white;
+    position: absolute;
+}
+
+/* Slideshow */
+.slider img {
+    width: 100%;
+    border-radius: 12px;
+    display: none;
+}
+
+/* Hearts */
+.heart {
+    position: fixed;
+    color: pink;
+    font-size: 22px;
+    animation: float 5s linear infinite;
+}
+
+@keyframes float {
+    0% { bottom: 0; opacity: 1; }
+    100% { bottom: 100vh; opacity: 0; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="mainBox">
+
+    <h1>Hey Niti</h1>
+
+    <p id="typeText"></p>
+
+    <h2>Will you be my Valentine? 💖</h2>
+
+    <div class="buttons">
+        <button id="yesBtn">Yes 😍</button>
+        <button id="noBtn">No 😒</button>
+    </div>
+
+</div>
+
+<script>
+
+/* ---------- Typing Effect ---------- */
+
+const text = "From our first date to our late night calls, you became my favorite person ❤️";
+let i = 0;
+
+function typeEffect() {
+    if (i < text.length) {
+        document.getElementById("typeText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 70);
+    }
+}
+
+typeEffect();
+
+/* ---------- No Button Run ---------- */
+
+const noBtn = document.getElementById("noBtn");
+
+noBtn.addEventListener("mouseover", function () {
+
+    const x = Math.random() * 250;
+    const y = Math.random() * 250;
+
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+
+/* ---------- Yes Button Action ---------- */
+
+const yesBtn = document.getElementById("yesBtn");
+const box = document.getElementById("mainBox");
+
+yesBtn.addEventListener("click", function () {
+
+    box.innerHTML = `
+
+        <h1>I knew you'd say Yes❤️</h1>
+
+        <div class="slider">
+            <img src="photo1.jpg" class="slide">
+        </div>
+
+        <p style="margin-top:10px;">
+        Every moment with you is special 💖
+        </p>
+
+    `;
+
+    startSlider();
+    startHearts();
+});
+
+
+/* ---------- Slideshow ---------- */
+
+function startSlider() {
+
+    let index = 0;
+    const slides = document.getElementsByClassName("slide");
+
+    slides[0].style.display = "block";
+
+    setInterval(() => {
+
+        slides[index].style.display = "none";
+        index = (index + 1) % slides.length;
+        slides[index].style.display = "block";
+
+    }, 2000);
+}
+
+
+/* ---------- Floating Hearts ---------- */
+
+function startHearts() {
+
+    setInterval(() => {
+
+        const heart = document.createElement("div");
+        heart.innerHTML = "❤️";
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => heart.remove(), 5000);
+
+    }, 500);
+}
+
+</script>
+
+</body>
+</html>
