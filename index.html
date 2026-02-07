@@ -76,6 +76,20 @@ button {
     animation: float 5s linear infinite;
 }
 
+
+.smallLine{
+font-size: 16px;
+margin: 5px 0;
+opacity: 0.9;
+}
+
+.bigLine{
+font-size: 24px;
+font-weight: bold;
+margin: 10px 0;
+}
+
+    
 @keyframes float {
     0% { bottom: 0; opacity: 1; }
     100% { bottom: 100vh; opacity: 0; }
@@ -140,8 +154,8 @@ yesBtn.addEventListener("click", function () {
 
     box.innerHTML = `
 
-        <h1>I don't want perfect days ❤️</h1>
-        <p>I want each day with you 💕</p>
+        <p class ="smallLine">I don't want perfect days ❤️</p>
+        <p class ="bigLine" >I want each day with you 💕</p>
 
         <div class="slider">
             <img src="photo1.jpg" class="slide">
@@ -194,5 +208,6 @@ function startHearts() {
 
 </body>
 </html>
+
 
 
